@@ -1,0 +1,141 @@
+// This is our Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model for Farmers
+model Farmer {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  name      String
+  email     String   @unique
+  phone     String   @unique
+  farmName  String
+  location  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relation to crops
+  crops Crop[]
+}
+
+// crop model
+model Crop {
+  id          Int       @id @default(autoincrement())
+  name        String
+  variety     String
+  quantity    Float
+  unit        String
+  plantedAt   DateTime
+  harvestedAt DateTime?
+  farmerId    Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // relation to farmer
+  farmer    Farmer      @relation(fields: [farmerId], references: [id])
+  // relation to orders
+  orders    Order[]
+  Inventory Inventory[]
+}
+
+// model for distributors
+model Distributor {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  name      String
+  email     String   @unique
+  phone     String   @unique
+  company   String
+  location  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // relation to orders
+  orders    Order[]
+}
+
+// model for orders
+model Order {
+  id            Int         @id @default(autoincrement())
+  orderNumber   String      @unique
+  cropId        Int
+  distributorId Int
+  quantity      Float
+  unit          String
+  orderDate     DateTime    @default(now())
+  deliveryDate  DateTime?
+  status        String      @default("PENDING")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  // relation to crop
+  crop          Crop        @relation(fields: [cropId], references: [id])
+  // relation to distributor
+  distributor   Distributor @relation(fields: [distributorId], references: [id])
+  Logistics     Logistics[]
+}
+
+// model for logistics
+model Logistics {
+  id            Int       @id @default(autoincrement())
+  orderId       Int
+  vehicleNumber String
+  driverName    String
+  driverContact String
+  status        String    @default("IN_TRANSIT")
+  pickupDate    DateTime
+  deliveryDate  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  // relation to order
+  order         Order     @relation(fields: [orderId], references: [id])
+}
+
+// mode for retailers
+model Retailer {
+  id        Int         @id @default(autoincrement())
+  clerkId   String      @unique
+  name      String
+  email     String      @unique
+  phone     String      @unique
+  storeName String
+  location  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Inventory Inventory[]
+}
+
+// model for inventory
+model Inventory {
+  id         Int      @id @default(autoincrement())
+  cropId     Int
+  retailerId Int
+  quantity   Float
+  unit       String
+  addedAt    DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // relation to crop
+  crop       Crop     @relation(fields: [cropId], references: [id])
+  // relation to retailer
+  retailer   Retailer @relation(fields: [retailerId], references: [id])
+}
+
+// model for customers
+model Customer {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  name      String
+  email     String   @unique
+  phone     String   @unique
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
