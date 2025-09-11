@@ -5,8 +5,8 @@ import { PrismaClient } from "@/generated/prisma";
 const prisma = new PrismaClient();
 
 // GET /api/customers/clerk/[id]
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-	const clerkId = params.id;
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+	const { id: clerkId } = await props.params;
 	if (!clerkId) {
 		return NextResponse.json({ error: "Invalid clerkId" }, { status: 400 });
 	}
@@ -18,8 +18,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 }
 
 // PUT /api/customers/clerk/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-	const clerkId = params.id;
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+	const { id: clerkId } = await props.params;
 	if (!clerkId) {
 		return NextResponse.json({ error: "Invalid clerkId" }, { status: 400 });
 	}
@@ -36,8 +36,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // DELETE /api/customers/clerk/[id]
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-	const clerkId = params.id;
+export async function DELETE(req: Request, props: { params: Promise<{ id: string }> }) {
+	const { id: clerkId } = await props.params;
 	if (!clerkId) {
 		return NextResponse.json({ error: "Invalid clerkId" }, { status: 400 });
 	}
