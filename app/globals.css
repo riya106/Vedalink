@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @tailwind utilities;
+@tailwind base;
+@tailwind components;
 
 :root {
     /* Fresh agri brand (light) */
