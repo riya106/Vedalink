@@ -29,9 +29,11 @@ export default function RootLayout({
     <I18nProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased px-4 sm:px-6 lg:px-8`}
         >
-          {children}
+          <div className="mx-auto w-full max-w-screen-2xl">
+            {children}
+          </div>
         </body>
       </html>
     </I18nProvider>
