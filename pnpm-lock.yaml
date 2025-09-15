@@ -26,6 +26,9 @@ importers:
       '@tailwindcss/oxide':
         specifier: ^4.1.13
         version: 4.1.13
+      '@tailwindcss/postcss':
+        specifier: ^4.1.13
+        version: 4.1.13
       '@tanstack/react-query':
         specifier: ^5.87.4
         version: 5.87.4(react@19.1.0)
@@ -75,9 +78,6 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
     devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.1.13
       '@types/node':
         specifier: ^20
         version: 20.19.13
