@@ -34,7 +34,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   const { t } = useI18n();
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b bg-white/80 dark:bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky px-24 top-0 z-40 bg-white/80 dark:bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b dark:supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground font-black">V</span>
@@ -52,7 +52,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       <main className="flex-1">{children}</main>
-      <footer className="border-t">
+      <footer className="px-24 border-t">
         <div className="container py-8 grid gap-4 sm:grid-cols-2 items-center">
           <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} VedaLink • Blockchain transparency for agriculture</p>
           <div className="flex sm:justify-end gap-4 text-sm">

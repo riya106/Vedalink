@@ -15,7 +15,7 @@ export default function Learn() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="px-26 relative overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -36,7 +36,7 @@ export default function Learn() {
       </section>
 
       {/* Flowchart */}
-      <section id="flow" className="container py-12 sm:py-16">
+      <section id="flow" className="px-26 container py-12 sm:py-16">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("learn.flow.title")}</h2>
         <p className="mt-2 max-w-2xl text-muted-foreground">{t("learn.flow.sub")}</p>
 
@@ -56,7 +56,7 @@ export default function Learn() {
       </section>
 
       {/* Feature deep‑dives */}
-      <section className="bg-muted/30 py-16">
+      <section className="px-26 bg-muted/30 py-16">
         <div className="container">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("learn.topics")}</h2>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">

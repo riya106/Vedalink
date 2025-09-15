@@ -43,7 +43,7 @@ export default function Index() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero with background image */}
-      <section className="relative min-h-[72vh] overflow-hidden" aria-label="Hero">
+      <section className="px-20 relative min-h-[72vh] overflow-hidden" aria-label="Hero">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -95,7 +95,7 @@ export default function Index() {
       </section>
 
       {/* Visual collage */}
-      <section className="relative py-12 sm:py-16">
+      <section className="relative px-26 py-12 sm:py-16">
         <div className="container">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <ImageCard src={PRODUCE_IMG} alt="Fresh market produce" tag={t("collage.farm.tag")} caption={t("collage.farm.cap")} />
@@ -106,7 +106,7 @@ export default function Index() {
       </section>
 
       {/* Traceability & Flow */}
-      <section id="traceability" className="py-16">
+      <section id="traceability" className="px-26 py-16">
         <div className="container">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("trace.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">
@@ -156,7 +156,7 @@ export default function Index() {
       </section>
 
       {/* Trust through transparency */}
-      <section className="py-16">
+      <section className="px-26 py-16">
         <div className="container">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("trust.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("trust.desc")}</p>
@@ -195,7 +195,7 @@ export default function Index() {
       </section>
 
       {/* Why it matters */}
-      <section className="bg-muted/30 py-16">
+      <section className="px-26 bg-muted/30 py-16">
         <div className="container">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("why.title")}</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

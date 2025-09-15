@@ -91,7 +91,7 @@ const producers: Producer[] = [
 export default function Producers() {
   const { t } = useI18n();
   return (
-    <section className="container py-12 sm:py-16">
+    <section className="px-26 container py-12 sm:py-16">
       <header className="max-w-3xl">
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t("producers.title")}</h1>
         <p className="mt-2 text-muted-foreground">{t("producers.desc")}</p>
