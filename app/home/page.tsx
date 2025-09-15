@@ -1,7 +1,7 @@
 'use client';
 
 import { QrCode, ShieldCheck, Sprout, Lock, FileCheck2, Eye, Tractor, Warehouse, Factory, Truck, Store, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useI18n } from "../../lib/i18n";
 import { useState } from "react";
 
@@ -67,13 +67,13 @@ export default function Index() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
-              to="/login"
+              href="/login"
               className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {t("hero.loginCta")}
             </Link>
             <Link
-              to="/learn"
+              href="/learn"
               className="inline-flex items-center justify-center rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold hover:bg-muted/60"
             >
               {t("hero.learnMore")}
