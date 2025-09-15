@@ -71,27 +71,48 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Fresh agri brand (dark) */
+    --background: 160 16% 6%;
+    --foreground: 150 15% 95%;
+
+    --card: 160 16% 6%;
+    --card-foreground: 150 15% 95%;
+
+    --popover: 160 16% 6%;
+    --popover-foreground: 150 15% 95%;
+
+    --primary: 147 60% 45%;
+    --primary-foreground: 160 10% 5%;
+
+    --secondary: 42 55% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 160 12% 15%;
+    --muted-foreground: 150 15% 70%;
+
+    --accent: 192 60% 45%;
+    --accent-foreground: 160 10% 5%;
+
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 12% 18%;
+    --input: 160 12% 18%;
+    --ring: 147 60% 45%;
+
+    --sidebar-background: 160 16% 6%;
+    --sidebar-foreground: 150 15% 95%;
+    --sidebar-primary: 147 60% 45%;
+    --sidebar-primary-foreground: 160 10% 5%;
+    --sidebar-accent: 160 12% 15%;
+    --sidebar-accent-foreground: 150 15% 85%;
+    --sidebar-border: 160 12% 18%;
+    --sidebar-ring: 147 60% 45%;
+  }
+}
+
 body {
    @apply bg-background text-foreground;
-}
-
-/* Full-bleed utility: makes a section span the viewport width while
-   preserving the page's horizontal paddings. Apply to a wrapper div. */
-.full-bleed {
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-  /* keep the same horizontal paddings as the layout */
-  padding-left: clamp(1rem, 4vw, 2rem);
-  padding-right: clamp(1rem, 4vw, 2rem);
-}
-
-@media (min-width: 640px) {
-  .full-bleed { padding-left: 1.5rem; padding-right: 1.5rem; }
-}
-@media (min-width: 1024px) {
-  .full-bleed { padding-left: 2rem; padding-right: 2rem; }
 }
