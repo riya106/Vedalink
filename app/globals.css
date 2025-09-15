@@ -1,9 +1,48 @@
 @import "tailwindcss";
 
+@tailwind utilities;
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+    /* Fresh agri brand (light) */
+    --background: 150 33% 98%;
+    --foreground: 160 10% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 10% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 10% 9%;
+
+    --primary: 147 50% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 42 80% 88%;
+    --secondary-foreground: 24 30% 20%;
+
+    --muted: 150 20% 94%;
+    --muted-foreground: 160 6% 35%;
+
+    --accent: 192 60% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 15% 85%;
+    --input: 150 15% 85%;
+    --ring: 147 50% 36%;
+
+    --radius: 0.6rem;
+
+    --sidebar-background: 150 33% 98%;
+    --sidebar-foreground: 160 10% 9%;
+    --sidebar-primary: 147 50% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 42 80% 88%;
+    --sidebar-accent-foreground: 24 30% 20%;
+    --sidebar-border: 150 15% 85%;
+    --sidebar-ring: 147 50% 36%;
+  }
 
 @theme inline {
   --color-background: var(--background);
@@ -12,15 +51,48 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Fresh agri brand (dark) */
+    --background: 160 16% 6%;
+    --foreground: 150 15% 95%;
+
+    --card: 160 16% 6%;
+    --card-foreground: 150 15% 95%;
+
+    --popover: 160 16% 6%;
+    --popover-foreground: 150 15% 95%;
+
+    --primary: 147 60% 45%;
+    --primary-foreground: 160 10% 5%;
+
+    --secondary: 42 55% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 160 12% 15%;
+    --muted-foreground: 150 15% 70%;
+
+    --accent: 192 60% 45%;
+    --accent-foreground: 160 10% 5%;
+
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 12% 18%;
+    --input: 160 12% 18%;
+    --ring: 147 60% 45%;
+
+    --sidebar-background: 160 16% 6%;
+    --sidebar-foreground: 150 15% 95%;
+    --sidebar-primary: 147 60% 45%;
+    --sidebar-primary-foreground: 160 10% 5%;
+    --sidebar-accent: 160 12% 15%;
+    --sidebar-accent-foreground: 150 15% 85%;
+    --sidebar-border: 160 12% 18%;
+    --sidebar-ring: 147 60% 45%;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+   @apply bg-background text-foreground;
 }
