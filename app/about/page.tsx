@@ -1,3 +1,5 @@
+'use client';
+
 import { Sprout, ShieldCheck, QrCode } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 

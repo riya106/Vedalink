@@ -1,3 +1,5 @@
+'use client';
+
 import { Tractor, Warehouse, Factory, Truck, Store, QrCode, ShieldCheck, FileCheck2, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
