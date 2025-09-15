@@ -189,10 +189,14 @@ interface Ctx {
 const I18nContext = createContext<Ctx | null>(null);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem("lang") as Lang) || "en");
+  const [lang, setLang] = useState<Lang>(() => (typeof window !== "undefined" && localStorage ? localStorage.getItem("lang") as Lang : "en"));
   useEffect(() => {
-    localStorage.setItem("lang", lang);
-    document.documentElement.lang = lang;
+    // Needs to be shift to real database
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lang", lang);
+      // document is not defined on client side rendering
+      document.documentElement.lang = lang;
+    }
   }, [lang]);
 
   const t = useMemo(() => {
