@@ -62,7 +62,7 @@ export default function Index() {
           <h1 className="mt-6 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
             {t("hero.title")}
           </h1>
-          <p className="mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base lg:text-lg">
+          <p className="mt-4 max-w-2xl text-sm text-shadow-muted-foreground sm:text-base lg:text-lg">
             {t("hero.subtitle")}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -74,16 +74,16 @@ export default function Index() {
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold hover:bg-muted/60"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-accent-background px-5 py-3 text-sm font-semibold hover:bg-muted/60"
             >
               {t("hero.learnMore")}
             </Link>
           </div>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl text-xs sm:text-sm text-muted-foreground">
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.simple")}</div>
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.tamper")}</div>
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.qr")}</div>
+            <div className="rounded-md bg-accent-foreground/70 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.simple")}</div>
+            <div className="rounded-md bg-accent-foreground/70 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.tamper")}</div>
+            <div className="rounded-md bg-accent-foreground/70 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.qr")}</div>
           </div>
         </div>
       </section>

@@ -30,7 +30,7 @@ export default function Learn() {
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("learn.sub")}</p>
           <div className="mt-6 flex gap-3">
             <Link href="/login" className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow hover:opacity-95">{t("learn.try")}</Link>
-            <a href="#flow" className="rounded-md border border-border px-4 py-2 text-sm font-semibold hover:bg-muted/60">{t("learn.viewFlow")}</a>
+            <a href="#flow" className="rounded-md border border-border px-4 py-2 bg-accent-foreground/70 text-sm font-semibold hover:bg-muted/60">{t("learn.viewFlow")}</a>
           </div>
         </div>
       </section>
