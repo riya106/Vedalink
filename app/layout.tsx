@@ -1,9 +1,9 @@
 import "./globals.css";
-import { I18nProvider } from "../lib/i18n";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-
+import Providers from "./providers";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <I18nProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          {children}
-        </body>
-      </html>
-    </I18nProvider>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
+          <div className="min-h-screen flex flex-col bg-background text-foreground">
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
+      </body>
+    </html>
   );
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Plus,
   ChevronDown,
@@ -43,13 +44,13 @@ interface RequestItem {
 }
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { t } = useI18n();
 
   useEffect(() => {
     const token = localStorage.getItem("agri_auth_token");
-    if (!token) navigate("/login", { replace: true });
-  }, [navigate]);
+    if (!token) router.replace("/login");
+  }, [router]);
 
   const [active, setActive] = useState<"batches" | "sales" | "requests" | "help">("batches");
 
@@ -67,7 +68,7 @@ export default function Dashboard() {
 
   const logout = () => {
     localStorage.removeItem("agri_auth_token");
-    navigate("/login", { replace: true });
+    router.replace("/login");
   };
 
   return (
@@ -374,7 +375,7 @@ function HelpSection() {
         <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-border"><HelpCircle className="h-5 w-5" /></div>
         <h3 className="mt-3 text-lg font-semibold">{t("dash.help.tutorial")}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{t("learn.sub")}</p>
-        <Link to="/learn" className="mt-3 inline-block rounded-md border border-border px-3 py-1.5 text-sm hover:bg-muted/60">{t("dash.help.openGuide")}</Link>
+        <Link href="/learn" className="mt-3 inline-block rounded-md border border-border px-3 py-1.5 text-sm hover:bg-muted/60">{t("dash.help.openGuide")}</Link>
       </div>
       <div className="rounded-2xl border border-border bg-card p-6 shadow">
         <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-border"><Phone className="h-5 w-5" /></div>

@@ -13,7 +13,7 @@ export default function About() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero banner */}
-      <section className="relative overflow-hidden">
+      <section className="px-26 relative overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -30,7 +30,7 @@ export default function About() {
       </section>
 
       {/* Story + image */}
-      <section className="container grid items-center gap-8 py-12 sm:grid-cols-2 sm:py-16">
+      <section className="px-26 container grid items-center gap-8 py-12 sm:grid-cols-2 sm:py-16">
         <figure className="overflow-hidden rounded-2xl border border-border bg-card shadow">
           <img src={TEAM_IMG_1} alt="Women-led cooperative at work" className="h-72 w-full object-cover sm:h-[22rem]" loading="lazy" />
         </figure>
@@ -46,7 +46,7 @@ export default function About() {
       </section>
 
       {/* Gallery */}
-      <section className="container py-8">
+      <section className="px-26 container py-8">
         <div className="grid gap-4 sm:grid-cols-3">
           <GalleryCard src={TEAM_IMG_2} caption="Highland tea—hand‑plucked" />
           <GalleryCard src={TEAM_IMG_3} caption="Orchard harvest and grading" />
@@ -55,7 +55,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="container py-12 sm:py-16">
+      <section className="px-26 container py-12 sm:py-16">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("about.values.title")}</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Value icon={<Sprout className="h-5 w-5" />} title={t("why.farmer.title")} desc={t("why.farmer.desc")} />
