@@ -24,8 +24,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vedalink",
+  title: "VedaLink",
   description: "Blockchain based Supply Chain Solution for Agriculture",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
