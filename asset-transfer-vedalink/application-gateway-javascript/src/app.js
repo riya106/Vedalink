@@ -14,7 +14,7 @@ const chaincodeName = envOrDefault('CHAINCODE_NAME', 'vedalink');
 const mspId = envOrDefault('MSP_ID', 'Org1MSP');
 
 // Path to crypto materials.
-const cryptoPath = envOrDefault(
+export const cryptoPath = envOrDefault(
     'CRYPTO_PATH',
     path.resolve(
         __dirname,
@@ -27,7 +27,7 @@ const cryptoPath = envOrDefault(
 );
 
 // Path to user private key directory.
-const keyDirectoryPath = envOrDefault(
+export const keyDirectoryPath = envOrDefault(
     'KEY_DIRECTORY_PATH',
     path.resolve(
         cryptoPath,
@@ -39,7 +39,7 @@ const keyDirectoryPath = envOrDefault(
 );
 
 // Path to user certificate directory.
-const certDirectoryPath = envOrDefault(
+export const certDirectoryPath = envOrDefault(
     'CERT_DIRECTORY_PATH',
     path.resolve(
         cryptoPath,
@@ -51,7 +51,7 @@ const certDirectoryPath = envOrDefault(
 );
 
 // Path to peer tls certificate.
-const tlsCertPath = envOrDefault(
+export const tlsCertPath = envOrDefault(
     'TLS_CERT_PATH',
     path.resolve(cryptoPath, 'peers', 'peer0.org1.example.com', 'tls', 'ca.crt')
 );
@@ -67,7 +67,7 @@ const utf8Decoder = new TextDecoder();
 //batchID logic (TODO)
 const batchID = `batch${String(Date.now())}`;
 
-async function main() {
+export async function CONNECTION() {
     displayInputParameters();
 
     // The gRPC client connection should be shared by all Gateway connections to this endpoint.
@@ -124,12 +124,12 @@ async function main() {
     }
 }
 
-main().catch((error) => {
+CONNECTION().catch((error) => {
     console.error('******** FAILED to run the application:', error);
     process.exitCode = 1;
 });
 
-async function newGrpcConnection() {
+export async function newGrpcConnection() {
     const tlsRootCert = await fs.readFile(tlsCertPath);
     const tlsCredentials = grpc.credentials.createSsl(tlsRootCert);
     return new grpc.Client(peerEndpoint, tlsCredentials, {
@@ -137,13 +137,13 @@ async function newGrpcConnection() {
     });
 }
 
-async function newIdentity() {
+export async function newIdentity() {
     const certPath = await getFirstDirFileName(certDirectoryPath);
     const credentials = await fs.readFile(certPath);
     return { mspId, credentials };
 }
 
-async function getFirstDirFileName(dirPath) {
+export async function getFirstDirFileName(dirPath) {
     const files = await fs.readdir(dirPath);
     const file = files[0];
     if (!file) {
@@ -152,7 +152,7 @@ async function getFirstDirFileName(dirPath) {
     return path.join(dirPath, file);
 }
 
-async function newSigner() {
+export async function newSigner() {
     const keyPath = await getFirstDirFileName(keyDirectoryPath);
     const privateKeyPem = await fs.readFile(keyPath);
     const privateKey = crypto.createPrivateKey(privateKeyPem);
@@ -164,7 +164,7 @@ async function newSigner() {
  * initial deployment. A new version of the chaincode deployed later would likely not need to run an "init" function.
  */
 
-async function initLedger(contract) {
+export async function initLedger(contract) {
     console.log(
         '\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger'
     );
@@ -177,7 +177,7 @@ async function initLedger(contract) {
 /**
  * Evaluate a transaction to query ledger state.
  */
-async function getAllAssets(contract) {
+export async function getAllAssets(contract) {
     console.log(
         '\n--> Evaluate Transaction: GetAllAssets, function returns all the current assets on the ledger'
     );
@@ -192,7 +192,7 @@ async function getAllAssets(contract) {
 /**
  * Submit a transaction synchronously, blocking until it has been committed to the ledger.
  */
-async function createAsset(contract) {
+export async function createAsset(contract) {
     console.log(
         '\n--> Submit Transaction: CreateAsset, creates new asset with batchID, Name , Quantity , Owner , Price , HarvestDate.'
     );
@@ -218,7 +218,7 @@ async function createAsset(contract) {
  * Submit transaction asynchronously, allowing the application to process the smart contract response (e.g. update a UI)
  * while waiting for the commit notification.
  */
-async function transferAssetAsync(contract) {
+export async function transferAssetAsync(contract) {
     console.log(
         '\n--> Async Submit Transaction: TransferAsset, updates existing asset owner'
     );
@@ -247,7 +247,7 @@ async function transferAssetAsync(contract) {
     console.log('*** Transaction committed successfully');
 }
 
-async function readAssetByID(contract) {
+export async function readAssetByID(contract) {
     console.log(
         '\n--> Evaluate Transaction: ReadAsset, function returns asset attributes'
     );
@@ -265,7 +265,7 @@ async function readAssetByID(contract) {
 /**
  * submitTransaction() will throw an error containing details of any error responses from the smart contract.
  */
-async function updateNonExistentAsset(contract) {
+export async function updateNonExistentAsset(contract) {
     console.log(
         '\n--> Submit Transaction: UpdateAsset batch70, batch70 does not exist and should return an error'
     );
