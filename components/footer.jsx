@@ -8,8 +8,8 @@ const Footer = () => {
   const { t } = useI18n();
 
   return (
-    <footer className="px-24 border-t">
-      <div className="container py-8 grid gap-4 sm:grid-cols-2 items-center">
+    <footer className="px-4 sm:px-8 lg:px-20 border-t">
+      <div className="max-w-7xl mx-auto w-full py-8 grid gap-4 sm:grid-cols-2 items-center">
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} VedaLink • Blockchain transparency for
           agriculture

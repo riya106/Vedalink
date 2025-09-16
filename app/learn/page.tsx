@@ -15,7 +15,7 @@ export default function Learn() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero */}
-      <section className="px-26 relative overflow-hidden">
+      <section className="px-4 sm:px-8 lg:px-20 relative overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -25,7 +25,7 @@ export default function Learn() {
             backgroundSize: "cover",
           }}
         />
-        <div className="relative container py-16 sm:py-20">
+        <div className="relative max-w-7xl mx-auto w-full py-16 sm:py-20">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t("learn.title")}</h1>
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("learn.sub")}</p>
           <div className="mt-6 flex gap-3">
@@ -36,28 +36,30 @@ export default function Learn() {
       </section>
 
       {/* Flowchart */}
-      <section id="flow" className="px-26 container py-12 sm:py-16">
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("learn.flow.title")}</h2>
-        <p className="mt-2 max-w-2xl text-muted-foreground">{t("learn.flow.sub")}</p>
+      <section id="flow" className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("learn.flow.title")}</h2>
+          <p className="mt-2 max-w-2xl text-muted-foreground">{t("learn.flow.sub")}</p>
 
-        <div className="mt-8 space-y-6">
-          <StepRow icon={<Tractor className="h-5 w-5" />} title={t("flow.card.farm.title")} img={HERO_IMG} points={[t("flow.card.farm.desc")]} />
-          <FlowConnector />
-          <StepRow icon={<Warehouse className="h-5 w-5" />} title={t("flow.card.collection.title")} img={PROCESS_IMG} points={[t("flow.card.collection.desc")]} />
-          <FlowConnector />
-          <StepRow icon={<Factory className="h-5 w-5" />} title={t("flow.card.process.title")} img={PROCESS_IMG} points={[t("flow.card.process.desc")]} />
-          <FlowConnector />
-          <StepRow icon={<Truck className="h-5 w-5" />} title={t("flow.card.logistics.title")} img={TRUCK_IMG} points={[t("flow.card.logistics.desc")]} />
-          <FlowConnector />
-          <StepRow icon={<Store className="h-5 w-5" />} title={t("flow.card.retail.title")} img={SCAN_IMG} points={[t("flow.card.retail.desc")]} />
-          <FlowConnector />
-          <StepRow icon={<QrCode className="h-5 w-5" />} title={t("flow.card.scan.title")} img={SCAN_IMG} points={[t("flow.card.scan.desc")]} />
+          <div className="mt-8 space-y-6">
+            <StepRow icon={<Tractor className="h-5 w-5" />} title={t("flow.card.farm.title")} img={HERO_IMG} points={[t("flow.card.farm.desc")]} />
+            <FlowConnector />
+            <StepRow icon={<Warehouse className="h-5 w-5" />} title={t("flow.card.collection.title")} img={PROCESS_IMG} points={[t("flow.card.collection.desc")]} />
+            <FlowConnector />
+            <StepRow icon={<Factory className="h-5 w-5" />} title={t("flow.card.process.title")} img={PROCESS_IMG} points={[t("flow.card.process.desc")]} />
+            <FlowConnector />
+            <StepRow icon={<Truck className="h-5 w-5" />} title={t("flow.card.logistics.title")} img={TRUCK_IMG} points={[t("flow.card.logistics.desc")]} />
+            <FlowConnector />
+            <StepRow icon={<Store className="h-5 w-5" />} title={t("flow.card.retail.title")} img={SCAN_IMG} points={[t("flow.card.retail.desc")]} />
+            <FlowConnector />
+            <StepRow icon={<QrCode className="h-5 w-5" />} title={t("flow.card.scan.title")} img={SCAN_IMG} points={[t("flow.card.scan.desc")]} />
+          </div>
         </div>
       </section>
 
       {/* Feature deep‑dives */}
-      <section className="px-26 bg-muted/30 py-16">
-        <div className="container">
+      <section className="px-4 sm:px-8 lg:px-20 bg-muted/30 py-16">
+        <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("learn.topics")}</h2>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             <LearnCard

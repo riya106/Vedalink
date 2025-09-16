@@ -60,56 +60,58 @@ export default function Dashboard() {
   ]);
 
   return (
-    <section className="container py-6 sm:py-10">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-10">
       {/* Top bar */}
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("dash.title")}</h1>
-        <div className="flex gap-2">
-          <button onClick={() => setActive("batches")} className={`h-9 rounded-md border px-3 text-sm ${active === "batches" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.batches")}</button>
-          <button onClick={() => setActive("sales")} className={`h-9 rounded-md border px-3 text-sm ${active === "sales" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.sales")}</button>
-          <button onClick={() => setActive("requests")} className={`h-9 rounded-md border px-3 text-sm ${active === "requests" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.requests")}</button>
-          <button onClick={() => setActive("help")} className={`h-9 rounded-md border px-3 text-sm ${active === "help" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.help")}</button>
+        <h1 className="text-xl font-bold tracking-tight sm:text-3xl">{t("dash.title")}</h1>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={() => setActive("batches")} className={`h-9 rounded-md border px-3 text-sm w-full sm:w-auto ${active === "batches" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.batches")}</button>
+          <button onClick={() => setActive("sales")} className={`h-9 rounded-md border px-3 text-sm w-full sm:w-auto ${active === "sales" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.sales")}</button>
+          <button onClick={() => setActive("requests")} className={`h-9 rounded-md border px-3 text-sm w-full sm:w-auto ${active === "requests" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.requests")}</button>
+          <button onClick={() => setActive("help")} className={`h-9 rounded-md border px-3 text-sm w-full sm:w-auto ${active === "help" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.help")}</button>
         </div>
       </div>
 
       {/* Profile header */}
       <ProfileHeader />
 
-      {active === "batches" && (
-        <BatchesSection batches={batches} setBatches={setBatches} />
-      )}
+      <div className="mt-2">
+        {active === "batches" && (
+          <BatchesSection batches={batches} setBatches={setBatches} />
+        )}
 
-      {active === "sales" && <SalesSection batches={batches} />}
+        {active === "sales" && <SalesSection batches={batches} />}
 
-      {active === "requests" && (
-        <RequestsSection requests={requests} setRequests={setRequests} />
-      )}
+        {active === "requests" && (
+          <RequestsSection requests={requests} setRequests={setRequests} />
+        )}
 
-      {active === "help" && <HelpSection />}
+        {active === "help" && <HelpSection />}
+      </div>
     </section>
   );
 }
 
 function ProfileHeader() {
   return (
-    <div className="mb-6 grid gap-4 rounded-2xl border border-border bg-card p-5 shadow sm:grid-cols-[120px_1fr]">
+    <div className="mb-6 grid gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5 shadow sm:grid-cols-[120px_1fr]">
       <img
         src="https://images.pexels.com/photos/7782084/pexels-photo-7782084.jpeg"
         alt="Farmer profile"
-        className="h-28 w-28 rounded-xl object-cover"
+        className="h-24 w-24 sm:h-28 sm:w-28 rounded-xl object-cover mx-auto sm:mx-0"
         loading="lazy"
       />
       <div className="grid gap-2">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="text-lg font-semibold leading-tight">Sita Devi</div>
-          <div className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+        <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-2 sm:gap-3">
+          <div className="text-base sm:text-lg font-semibold leading-tight">Sita Devi</div>
+          <div className="inline-flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
             <MapPin className="h-4 w-4" /> Nagpur, Maharashtra
           </div>
-          <div className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+          <div className="inline-flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
             <Phone className="h-4 w-4" /> +91 98200 12345
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3 text-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm">
           <Stat label="Active batches" value="5" icon={<Package className="h-4 w-4" />} />
           <Stat label="In transit" value="2" icon={<Truck className="h-4 w-4" />} />
           <Stat label="On-time rate" value="96%" icon={<Clock className="h-4 w-4" />} />
@@ -180,7 +182,7 @@ function BatchesSection({ batches, setBatches }: { batches: Batch[]; setBatches:
       </div>
 
       {open && (
-        <div className="mb-6 rounded-2xl border border-border bg-card p-5 shadow">
+        <div className="mb-6 rounded-2xl border border-border bg-card p-4 sm:p-5 shadow">
           <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
             <div className="grid gap-2">
               <label className="text-sm font-medium">{t("dash.form.productType")}</label>
@@ -233,9 +235,9 @@ function BatchesSection({ batches, setBatches }: { batches: Batch[]; setBatches:
       )}
 
       {/* Table */}
-      <h2 className="mb-2 text-xl font-semibold">{t("dash.table.title")}</h2>
+      <h2 className="mb-2 text-lg sm:text-xl font-semibold">{t("dash.table.title")}</h2>
       <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow">
-        <table className="min-w-full text-sm">
+        <table className="min-w-[600px] w-full text-xs sm:text-sm">
           <thead>
             <tr className="border-b text-muted-foreground">
               <th className="px-4 py-3 text-left">{t("dash.table.batchId")}</th>
@@ -293,12 +295,12 @@ function SalesSection({ batches }: { batches: Batch[] }) {
   const total = useMemo(() => sold.reduce((acc, b) => acc + b.price, 0), [sold]);
 
   return (
-    <div className="grid gap-6">
-      <div className="rounded-2xl border border-border bg-card p-5 shadow">
+    <div className="grid gap-4 sm:gap-6">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 shadow">
         <div className="flex items-center gap-2 text-muted-foreground"><Banknote className="h-5 w-5" /><span className="text-sm">{t("dash.sales.total")}</span></div>
         <div className="mt-1 flex items-center gap-1 text-3xl font-extrabold"><IndianRupee className="h-7 w-7" />{total.toLocaleString()}</div>
       </div>
-      <div className="rounded-2xl border border-border bg-card p-5 shadow">
+  <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 shadow">
         <h3 className="text-base font-semibold">{t("dash.sales.recent")}</h3>
         <ul className="mt-3 divide-y">
           {sold.length === 0 && <li className="py-3 text-sm text-muted-foreground">{t("dash.sales.none")}</li>}
@@ -323,8 +325,8 @@ function RequestsSection({ requests, setRequests }: { requests: RequestItem[]; s
   const act = (id: string, status: "Approved" | "Denied") => setRequests((prev) => prev.map((r) => (r.id === id ? { ...r, status } : r)));
 
   return (
-    <div className="grid gap-6">
-      <div className="rounded-2xl border border-border bg-card p-5 shadow">
+    <div className="grid gap-4 sm:gap-6">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 shadow">
         <h3 className="text-base font-semibold">{t("dash.requests.title")}</h3>
         <ul className="mt-3 divide-y">
           {requests.map((r) => (
@@ -357,14 +359,14 @@ function RequestsSection({ requests, setRequests }: { requests: RequestItem[]; s
 function HelpSection() {
   const { t } = useI18n();
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
-      <div className="rounded-2xl border border-border bg-card p-6 shadow">
+    <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
+      <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 shadow">
         <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-border"><HelpCircle className="h-5 w-5" /></div>
         <h3 className="mt-3 text-lg font-semibold">{t("dash.help.tutorial")}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{t("learn.sub")}</p>
         <Link href="/learn" className="mt-3 inline-block rounded-md border border-border px-3 py-1.5 text-sm hover:bg-muted/60">{t("dash.help.openGuide")}</Link>
       </div>
-      <div className="rounded-2xl border border-border bg-card p-6 shadow">
+  <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 shadow">
         <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-border"><Phone className="h-5 w-5" /></div>
         <h3 className="mt-3 text-lg font-semibold">{t("dash.help.helpline")}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{t("dash.help.needHelp")}</p>

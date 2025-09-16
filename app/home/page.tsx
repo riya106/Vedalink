@@ -43,7 +43,7 @@ export default function Index() {
   return (
     <div className="bg-background text-foreground">
       {/* Hero with background image */}
-      <section className="px-20 relative min-h-[72vh] overflow-hidden" aria-label="Hero">
+      <section className="px-4 sm:px-8 lg:px-20 relative min-h-[72vh] overflow-hidden" aria-label="Hero">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -54,15 +54,15 @@ export default function Index() {
           }}
         />
         <div className="pointer-events-none absolute -right-40 top-20 h-[36rem] w-[36rem] rounded-full bg-accent/20 blur-3xl" />
-        <div className="relative container px-4 py-24 sm:py-28">
+        <div className="relative max-w-7xl mx-auto w-full px-2 sm:px-4 py-16 sm:py-24 lg:py-28">
           <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground ring-1 ring-border">
             <ShieldCheck className="h-3.5 w-3.5" />
             {t("hero.badge")}
           </span>
-          <h1 className="mt-6 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+          <h1 className="mt-6 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
             {t("hero.title")}
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+          <p className="mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base lg:text-lg">
             {t("hero.subtitle")}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -80,24 +80,18 @@ export default function Index() {
             </Link>
           </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-3 max-w-xl text-sm text-muted-foreground">
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">
-              {t("hero.pill.simple")}
-            </div>
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">
-              {t("hero.pill.tamper")}
-            </div>
-            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">
-              {t("hero.pill.qr")}
-            </div>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl text-xs sm:text-sm text-muted-foreground">
+            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.simple")}</div>
+            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.tamper")}</div>
+            <div className="rounded-md bg-white/60 dark:bg-white/5 p-3 ring-1 ring-border backdrop-blur">{t("hero.pill.qr")}</div>
           </div>
         </div>
       </section>
 
-      {/* Visual collage */}
-      <section className="relative px-26 py-12 sm:py-16">
-        <div className="container">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {/* Visual collage */}
+  <section className="relative px-4 sm:px-8 lg:px-20 py-8 sm:py-12 lg:py-16">
+    <div className="max-w-7xl mx-auto w-full">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <ImageCard src={PRODUCE_IMG} alt="Fresh market produce" tag={t("collage.farm.tag")} caption={t("collage.farm.cap")} />
             <ImageCard src={TRUCK_IMG} alt="Produce logistics truck" tag={t("collage.log.tag")} caption={t("collage.log.cap")} />
             <ImageCard src={BLOCKCHAIN_IMG} alt="Abstract teal network" tag={t("collage.chain.tag")} caption={t("collage.chain.cap")} />
@@ -105,15 +99,15 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Traceability & Flow */}
-      <section id="traceability" className="px-26 py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("trace.title")}</h2>
+  {/* Traceability & Flow */}
+  <section id="traceability" className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
+    <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("trace.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">
             {t("trace.title")}
           </p>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-3">
             <StepCard img={FARM_IMG} alt="Farm harvest" icon={<Tractor className="h-5 w-5" />} title={t("flow.card.farm.title")} snippet={``} desc={t("flow.card.farm.desc")} />
             <StepCard img={COLLECTION_IMG} alt="Coop collection" icon={<Warehouse className="h-5 w-5" />} title={t("flow.card.collection.title")} snippet={``} desc={t("flow.card.collection.desc")} />
             <StepCard img={PROCESS_IMG} alt="Processing plant" icon={<Factory className="h-5 w-5" />} title={t("flow.card.process.title")} snippet={``} desc={t("flow.card.process.desc")} />
@@ -124,7 +118,7 @@ export default function Index() {
 
           {/* Interactive stepper diagram */}
           <div className="mt-12 overflow-x-auto">
-            <div className="min-w-[920px] rounded-2xl border border-border bg-card p-6 shadow">
+            <div className="min-w-[600px] sm:min-w-[920px] rounded-2xl border border-border bg-card p-4 sm:p-6 shadow">
               <div className="relative px-2">
                 {/* VedaLink logo at start + arrow connectors */}
                 <div className="relative z-10 -mt-2 flex items-center gap-3">
@@ -143,9 +137,9 @@ export default function Index() {
                 </div>
               </div>
               {/* preview */}
-              <div className="mt-6 grid items-center gap-4 md:grid-cols-[320px_1fr]">
-                <img src={FLOW_STEPS[activeStep].img} alt={t((`flow.step.${FLOW_STEPS[activeStep].key}`) as any)} className="h-40 w-full rounded-lg object-cover md:h-44" loading="lazy" />
-                <div className="text-sm text-muted-foreground">
+              <div className="mt-6 grid items-center gap-4 grid-cols-1 md:grid-cols-[320px_1fr]">
+                <img src={FLOW_STEPS[activeStep].img} alt={t((`flow.step.${FLOW_STEPS[activeStep].key}`) as any)} className="h-32 sm:h-40 w-full rounded-lg object-cover md:h-44" loading="lazy" />
+                <div className="text-xs sm:text-sm text-muted-foreground">
                   <div className="font-semibold text-foreground">{t((`flow.step.${FLOW_STEPS[activeStep].key}`) as any)}</div>
                   Click steps to preview the journey. Use the table below to see full details.
                 </div>
@@ -155,13 +149,13 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Trust through transparency */}
-      <section className="px-26 py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("trust.title")}</h2>
+  {/* Trust through transparency */}
+  <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
+    <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("trust.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("trust.desc")}</p>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
             <TrustCard
               img={SCAN_IMG}
               alt="Scanning QR code on product"
@@ -194,11 +188,11 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Why it matters */}
-      <section className="px-26 bg-muted/30 py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("why.title")}</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {/* Why it matters */}
+  <section className="px-4 sm:px-8 lg:px-20 bg-muted/30 py-12 sm:py-16 lg:py-20">
+    <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("why.title")}</h2>
+          <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <Feature icon={<Sprout className="h-5 w-5" />} title={t("why.farmer.title")} desc={t("why.farmer.desc")} />
             <Feature icon={<ShieldCheck className="h-5 w-5" />} title={t("why.tamper.title")} desc={t("why.tamper.desc")} />
             <Feature icon={<QrCode className="h-5 w-5" />} title={t("why.qr.title")} desc={t("why.qr.desc")} />

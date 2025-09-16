@@ -91,16 +91,18 @@ const producers: Producer[] = [
 export default function Producers() {
   const { t } = useI18n();
   return (
-    <section className="px-26 container py-12 sm:py-16">
-      <header className="max-w-3xl">
-        <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t("producers.title")}</h1>
-        <p className="mt-2 text-muted-foreground">{t("producers.desc")}</p>
-      </header>
+    <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto w-full">
+        <header className="max-w-3xl">
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t("producers.title")}</h1>
+          <p className="mt-2 text-muted-foreground">{t("producers.desc")}</p>
+        </header>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {producers.map((p) => (
-          <ProducerCard key={p.id} p={p} />
-        ))}
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {producers.map((p) => (
+            <ProducerCard key={p.id} p={p} />
+          ))}
+        </div>
       </div>
     </section>
   );
