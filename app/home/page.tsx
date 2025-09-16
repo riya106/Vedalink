@@ -196,7 +196,7 @@ export default function Index() {
             <Feature icon={<Sprout className="h-5 w-5" />} title={t("why.farmer.title")} desc={t("why.farmer.desc")} />
             <Feature icon={<ShieldCheck className="h-5 w-5" />} title={t("why.tamper.title")} desc={t("why.tamper.desc")} />
             <Feature icon={<QrCode className="h-5 w-5" />} title={t("why.qr.title")} desc={t("why.qr.desc")} />
-          </div>
+          </div> 
         </div>
       </section>
     </div>
