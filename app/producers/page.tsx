@@ -130,7 +130,7 @@ function ProducerCard({ p }: { p: Producer }) {
             <span key={c} className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border">{c}</span>
           ))}
           {p.certifications.map((c) => (
-            <span key={c} className="rounded-full bg-accent/10 px-2 py-0.5 text-accent-foreground ring-1 ring-border">{c}</span>
+            <span key={c} className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border">{c}</span>
           ))}
         </div>
 
@@ -165,7 +165,7 @@ function ProducerCard({ p }: { p: Producer }) {
         {/* gallery */}
         <div className="mt-4 flex gap-2 overflow-x-auto">
           {[p.image, ...p.gallery].map((src, i) => (
-            <button key={i} onClick={() => setMain(src)} className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-border ${main===src?"outline outline-2 outline-primary":""}`} aria-label="Select image">
+            <button key={i} onClick={() => setMain(src)} className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-border ${main===src?" outline-2 outline-primary":""}`} aria-label="Select image">
               <img src={src} alt="gallery" className="h-full w-full object-cover" loading="lazy" />
             </button>
           ))}

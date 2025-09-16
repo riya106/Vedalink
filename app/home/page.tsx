@@ -74,7 +74,7 @@ export default function Index() {
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center rounded-md border border-border bg-accent-background px-5 py-3 text-sm font-semibold hover:bg-muted/60"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-accent-foreground/80 px-5 py-3 text-sm font-semibold hover:bg-muted/60"
             >
               {t("hero.learnMore")}
             </Link>
@@ -102,7 +102,7 @@ export default function Index() {
   {/* Traceability & Flow */}
   <section id="traceability" className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
     <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("trace.title")}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ">{t("trace.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">
             {t("trace.title")}
           </p>
@@ -152,7 +152,7 @@ export default function Index() {
   {/* Trust through transparency */}
   <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
     <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("trust.title")}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ">{t("trust.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("trust.desc")}</p>
 
           <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
@@ -191,7 +191,7 @@ export default function Index() {
   {/* Why it matters */}
   <section className="px-4 sm:px-8 lg:px-20 bg-muted/30 py-12 sm:py-16 lg:py-20">
     <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight sm:text-4xl">{t("why.title")}</h2>
+          <h2 className="text-2xl font-bold tracking-tight sm:text-4xl">{t("why.title")}</h2>
           <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <Feature icon={<Sprout className="h-5 w-5" />} title={t("why.farmer.title")} desc={t("why.farmer.desc")} />
             <Feature icon={<ShieldCheck className="h-5 w-5" />} title={t("why.tamper.title")} desc={t("why.tamper.desc")} />
