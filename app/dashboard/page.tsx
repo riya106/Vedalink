@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   Plus,
   ChevronDown,
@@ -44,13 +43,7 @@ interface RequestItem {
 }
 
 export default function Dashboard() {
-  const router = useRouter();
   const { t } = useI18n();
-
-  useEffect(() => {
-    const token = localStorage.getItem("agri_auth_token");
-    if (!token) router.replace("/login");
-  }, [router]);
 
   const [active, setActive] = useState<"batches" | "sales" | "requests" | "help">("batches");
 
@@ -66,11 +59,6 @@ export default function Dashboard() {
     { id: "R-9002", buyer: "CityMart Retail", product: "Highland Green Tea", qty: "80 kg", status: "Pending" },
   ]);
 
-  const logout = () => {
-    localStorage.removeItem("agri_auth_token");
-    router.replace("/login");
-  };
-
   return (
     <section className="container py-6 sm:py-10">
       {/* Top bar */}
@@ -81,7 +69,6 @@ export default function Dashboard() {
           <button onClick={() => setActive("sales")} className={`h-9 rounded-md border px-3 text-sm ${active === "sales" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.sales")}</button>
           <button onClick={() => setActive("requests")} className={`h-9 rounded-md border px-3 text-sm ${active === "requests" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.requests")}</button>
           <button onClick={() => setActive("help")} className={`h-9 rounded-md border px-3 text-sm ${active === "help" ? "bg-primary text-primary-foreground border-primary" : "hover:bg-muted/60"}`}>{t("dash.tab.help")}</button>
-          <button onClick={logout} className="h-9 rounded-md border px-3 text-sm hover:bg-muted/60">{t("dash.logout")}</button>
         </div>
       </div>
 

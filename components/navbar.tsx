@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n"
+import { SignedIn, SignedOut, SignOutButton } from "@clerk/nextjs";
 
 const Navbar = () => {
 
@@ -52,12 +53,21 @@ const Navbar = () => {
           <Link href="/about" className="hover:text-primary transition-colors">
             {t("nav.about")}
           </Link>
-          <Link
-            href="/login"
-            className="rounded-md bg-primary px-3 py-1.5 text-primary-foreground font-medium hover:opacity-95"
-          >
-            {t("nav.login")}
-          </Link>
+          <SignedOut>
+            <Link
+              href="/sign-in"
+              className="rounded-md bg-primary px-3 py-1.5 text-primary-foreground font-medium hover:opacity-95"
+            >
+              {t("nav.login")}
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            <SignOutButton
+              redirectUrl="/home"
+            >
+              <button className="rounded-md bg-primary px-3 py-1.5 text-primary-foreground font-medium hover:opacity-95">Sign Out</button>
+            </SignOutButton>
+          </SignedIn>
           <LangSelect />
         </nav>
       </div>

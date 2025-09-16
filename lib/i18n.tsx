@@ -13,7 +13,7 @@ const dict: Dict = {
   "nav.producers": { en: "Producers", hi: "उत्पादक", sa: "उत्पादकाः" },
   "nav.dashboard": { en: "Dashboard", hi: "डैशबोर्ड", sa: "डैशबोर्ड" },
   "nav.about": { en: "About", hi: "हमारे बारे में", sa: "विषये" },
-  "nav.login": { en: "Login", hi: "लॉगिन", sa: "प्रवेशः" },
+  "nav.login": { en: "Sign In", hi: "लॉगिन", sa: "प्रवेशः" },
 
   // hero
   "hero.badge": { en: "Farmer-first transparency", hi: "किसान-प्रथम पारदर्शिता", sa: "कृषकप्रथम पारदर्शिता" },
