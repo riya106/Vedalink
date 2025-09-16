@@ -102,7 +102,7 @@ export default function Index() {
   {/* Traceability & Flow */}
   <section id="traceability" className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
     <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ">{t("trace.title")}</h2>
+          <h2 className="text-2xl font-bold tracking-tight sm:text-4xl">{t("trace.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">
             {t("trace.title")}
           </p>
@@ -152,7 +152,7 @@ export default function Index() {
   {/* Trust through transparency */}
   <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
     <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight ">{t("trust.title")}</h2>
+          <h2 className="text-2xl  font-bold tracking-tight sm:text-4xl">{t("trust.title")}</h2>
           <p className="mt-2 max-w-3xl text-muted-foreground">{t("trust.desc")}</p>
 
           <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2">
