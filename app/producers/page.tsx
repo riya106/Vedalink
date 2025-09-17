@@ -11,95 +11,89 @@ import {
   QrCode,
   ShieldCheck,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import useStore from "@/store/useStore";
+import { Producer } from "@/types/types";
 
-interface Producer {
-  id: string;
-  name: string;
-  region: string;
-  crops: string[];
-  certifications: string[];
-  phone: string;
-  image: string; // cover image
-  gallery: string[]; // extra images
-  acreage: string;
-  methods: string[];
-  since: number;
-  rating: number; // 1..5
-  batches: number;
-  lastHarvest: string;
-  bio: string;
-}
 
-const producers: Producer[] = [
-  {
-    id: "p1",
-    name: "Sita Devi Farms",
-    region: "Nagpur, Maharashtra",
-    crops: ["Turmeric", "Tomato"],
-    certifications: ["Organic (NPOP)", "Residue Test 2025-Q1"],
-    phone: "+91 98200 12345",
-    image:
-      "https://images.pexels.com/photos/20458068/pexels-photo-20458068.jpeg",
-    gallery: [
-      "https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg",
-      "https://images.pexels.com/photos/2278543/pexels-photo-2278543.jpeg",
-      "https://images.pexels.com/photos/11573790/pexels-photo-11573790.jpeg",
-    ],
-    acreage: "6.2 acres",
-    methods: ["Natural farming", "Rainwater harvesting", "Drip irrigation"],
-    since: 2017,
-    rating: 4.7,
-    batches: 28,
-    lastHarvest: "2025-05-18",
-    bio: "Women-led cooperative practicing natural farming with rainwater harvesting and crop rotation.",
-  },
-  {
-    id: "p2",
-    name: "Green Valley Tea",
-    region: "Munnar, Kerala",
-    crops: ["Tea"],
-    certifications: ["Fairtrade", "Rainforest Alliance"],
-    phone: "+91 98191 22334",
-    image: "https://images.pexels.com/photos/1043292/pexels-photo-1043292.jpeg",
-    gallery: [
-      "https://images.pexels.com/photos/6713249/pexels-photo-6713249.jpeg",
-      "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
-      "https://images.pexels.com/photos/268832/pexels-photo-268832.jpeg",
-    ],
-    acreage: "18.5 acres",
-    methods: ["Shade-grown", "Manual plucking", "Soil health tracking"],
-    since: 2012,
-    rating: 4.8,
-    batches: 54,
-    lastHarvest: "2025-04-30",
-    bio: "Smallholder network producing hand-plucked highland tea with soil health tracking.",
-  },
-  {
-    id: "p3",
-    name: "Kavya Horticulture",
-    region: "Kolar, Karnataka",
-    crops: ["Mango", "Papaya"],
-    certifications: ["GLOBALG.A.P."],
-    phone: "+91 90040 77882",
-    image: "https://images.pexels.com/photos/7782084/pexels-photo-7782084.jpeg",
-    gallery: [
-      "https://images.pexels.com/photos/3019836/pexels-photo-3019836.jpeg",
-      "https://images.pexels.com/photos/1406880/pexels-photo-1406880.jpeg",
-      "https://images.pexels.com/photos/33816611/pexels-photo-33816611.jpeg",
-    ],
-    acreage: "12.0 acres",
-    methods: ["Integrated pest management", "Solar cold room", "Compost mulch"],
-    since: 2015,
-    rating: 4.6,
-    batches: 37,
-    lastHarvest: "2025-05-08",
-    bio: "Family farm with integrated pest management and solar-powered cold room.",
-  },
-];
+
+// const producers: Producer[] = [
+//   {
+//     id: "p1",
+//     name: "Sita Devi Farms",
+//     region: "Nagpur, Maharashtra",
+//     crops: ["Turmeric", "Tomato"],
+//     certifications: ["Organic (NPOP)", "Residue Test 2025-Q1"],
+//     phone: "+91 98200 12345",
+//     image: "https://images.pexels.com/photos/20458068/pexels-photo-20458068.jpeg",
+//     gallery: [
+//       "https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg",
+//       "https://images.pexels.com/photos/2278543/pexels-photo-2278543.jpeg",
+//       "https://images.pexels.com/photos/11573790/pexels-photo-11573790.jpeg"
+//     ],
+//     acreage: "6.2 acres",
+//     methods: ["Natural farming", "Rainwater harvesting", "Drip irrigation"],
+//     since: 2017,
+//     rating: 4.7,
+//     batches: 28,
+//     lastHarvest: "2025-05-18",
+//     bio: "Women-led cooperative practicing natural farming with rainwater harvesting and crop rotation.",
+//   },
+//   {
+//     id: "p2",
+//     name: "Green Valley Tea",
+//     region: "Munnar, Kerala",
+//     crops: ["Tea"],
+//     certifications: ["Fairtrade", "Rainforest Alliance"],
+//     phone: "+91 98191 22334",
+//     image: "https://images.pexels.com/photos/1043292/pexels-photo-1043292.jpeg",
+//     gallery: [
+//       "https://images.pexels.com/photos/6713249/pexels-photo-6713249.jpeg",
+//       "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
+//       "https://images.pexels.com/photos/268832/pexels-photo-268832.jpeg"
+//     ],
+//     acreage: "18.5 acres",
+//     methods: ["Shade-grown", "Manual plucking", "Soil health tracking"],
+//     since: 2012,
+//     rating: 4.8,
+//     batches: 54,
+//     lastHarvest: "2025-04-30",
+//     bio: "Smallholder network producing hand-plucked highland tea with soil health tracking.",
+//   },
+//   {
+//     id: "p3",
+//     name: "Kavya Horticulture",
+//     region: "Kolar, Karnataka",
+//     crops: ["Mango", "Papaya"],
+//     certifications: ["GLOBALG.A.P."],
+//     phone: "+91 90040 77882",
+//     image: "https://images.pexels.com/photos/7782084/pexels-photo-7782084.jpeg",
+//     gallery: [
+//       "https://images.pexels.com/photos/3019836/pexels-photo-3019836.jpeg",
+//       "https://images.pexels.com/photos/1406880/pexels-photo-1406880.jpeg",
+//       "https://images.pexels.com/photos/33816611/pexels-photo-33816611.jpeg"
+//     ],
+//     acreage: "12.0 acres",
+//     methods: ["Integrated pest management", "Solar cold room", "Compost mulch"],
+//     since: 2015,
+//     rating: 4.6,
+//     batches: 37,
+//     lastHarvest: "2025-05-08",
+//     bio: "Family farm with integrated pest management and solar-powered cold room.",
+//   },
+// ];
+
 
 export default function Producers() {
+  
+  
+  const{producers,getProducers} = useStore();
+
+  useEffect(() => {
+    getProducers()
+  },[getProducers]);
+
   const { t } = useI18n();
   return (
     <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16">
@@ -144,14 +138,14 @@ function ProducerCard({ p }: { p: Producer }) {
 
         {/* badges */}
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
-          {p.crops.map((c) => (
+          {/* {p.crops.map((c) => (
             <span
               key={c}
               className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border"
             >
               {c}
             </span>
-          ))}
+          ))} */}
           {p.certifications.map((c) => (
             <span
               key={c}
@@ -227,7 +221,7 @@ function ProducerCard({ p }: { p: Producer }) {
               key={i}
               onClick={() => setMain(src)}
               className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-border ${
-                main === src ? "outline-2 outline-primary" : ""
+                main === src ? " outline-2 outline-primary" : ""
               }`}
               aria-label="Select image"
             >
