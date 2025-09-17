@@ -48,7 +48,7 @@ export const SalesSection = () => {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+        <Card className="border border-gray-200">
           <CardHeader>
             <CardTitle className="text-lg">Total Spent</CardTitle>
           </CardHeader>
@@ -58,28 +58,28 @@ export const SalesSection = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border border-gray-200">
           <CardHeader>
             <CardTitle className="text-lg">Active Orders</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-warning">12</div>
+            <div className="text-2xl font-bold text-yellow-600">12</div>
             <p className="text-sm text-muted-foreground">In transit</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border border-gray-200">
           <CardHeader>
             <CardTitle className="text-lg">Completed Orders</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-success">45</div>
+            <div className="text-2xl font-bold text-primary">45</div>
             <p className="text-sm text-muted-foreground">This month</p>
           </CardContent>
         </Card>
       </div>
 
-      <Card>
+      <Card className="border border-gray-200">
         <CardHeader>
           <CardTitle>Recent Purchases</CardTitle>
         </CardHeader>
@@ -90,16 +90,27 @@ export const SalesSection = () => {
               { farmer: "Priya Sharma", batch: "TX-13373467", amount: "₹18,500", date: "Dec 14", status: "In Transit" },
               { farmer: "Mohan Singh", batch: "TX-13373457", amount: "₹32,000", date: "Dec 13", status: "Delivered" }
             ].map((purchase, index) => (
-              <div key={index} className="flex justify-between items-center p-3 border rounded-lg">
+              <div key={index} className="flex justify-between items-center p-3 border border-gray-200 rounded-lg">
                 <div>
-                  <div className="font-medium">{purchase.farmer}</div>
+                  <div className="font-medium flex items-center space-x-2">
+                    <span>{purchase.farmer}</span>
+                    <Badge className="bg-green-50 text-green-600 border border-green-200 rounded-full px-2 py-0.5 text-xs">
+                      Verified
+                    </Badge>
+                  </div>
                   <div className="text-sm text-muted-foreground">Batch: {purchase.batch}</div>
                 </div>
                 <div className="text-right">
                   <div className="font-medium">{purchase.amount}</div>
                   <div className="text-sm text-muted-foreground">{purchase.date}</div>
                 </div>
-                <Badge variant={purchase.status === "Delivered" ? "default" : "secondary"}>
+                <Badge
+                  className={
+                    purchase.status === "Delivered"
+                      ? "bg-blue-50 text-blue-600 border border-blue-200 rounded-full"
+                      : "bg-gray-100 text-gray-600 border border-gray-200 rounded-full"
+                  }
+                >
                   {purchase.status}
                 </Badge>
               </div>
@@ -114,7 +125,7 @@ export const SalesSection = () => {
 export const OrdersSection = () => {
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="border border-gray-200">
         <CardHeader>
           <CardTitle>Order History</CardTitle>
         </CardHeader>
@@ -127,17 +138,28 @@ export const OrdersSection = () => {
               { id: "ORD-004", farmer: "Lakshmi Devi", crop: "Cotton", quantity: "300 kg", amount: "₹45,000", date: "Dec 12, 2024", status: "Cancelled" },
               { id: "ORD-005", farmer: "Kumar Reddy", crop: "Wheat", quantity: "600 kg", amount: "₹28,000", date: "Dec 11, 2024", status: "Delivered" }
             ].map((order, index) => (
-              <div key={index} className="p-4 border rounded-lg">
+              <div key={index} className="p-4 border border-gray-200 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <div className="font-medium text-lg">{order.id}</div>
-                    <div className="text-muted-foreground">{order.farmer}</div>
+                    <div className="text-sm text-muted-foreground flex items-center space-x-2">
+                      <span>
+                        Purchased from: <span className="font-medium">{order.farmer}</span>
+                      </span>
+                      <Badge className="bg-green-50 text-green-600 border border-green-200 rounded-full px-2 py-0.5 text-xs">
+                        Verified
+                      </Badge>
+                    </div>
                   </div>
-                  <Badge variant={
-                    order.status === "Delivered" ? "default" : 
-                    order.status === "In Transit" ? "secondary" : 
-                    "destructive"
-                  }>
+                  <Badge
+                    className={
+                      order.status === "Delivered"
+                        ? "bg-blue-50 text-blue-600 border border-blue-200 rounded-full"
+                        : order.status === "In Transit"
+                        ? "bg-yellow-50 text-yellow-600 border border-yellow-200 rounded-full"
+                        : "bg-red-50 text-red-600 border border-red-200 rounded-full"
+                    }
+                  >
                     {order.status}
                   </Badge>
                 </div>
@@ -171,7 +193,7 @@ export const OrdersSection = () => {
 export const HelpSection = () => {
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="border border-gray-200">
         <CardHeader>
           <CardTitle>Help & Support</CardTitle>
         </CardHeader>
@@ -184,7 +206,7 @@ export const HelpSection = () => {
               <li>• Order tracking and management</li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-2">Contact Support</h3>
             <div className="space-y-2 text-sm">

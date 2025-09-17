@@ -5,6 +5,7 @@ import { Badge } from "@/components/badge";
 import { Button } from "@/components/button";
 import { MapPin, Calendar, Package, Truck, CheckCircle, Clock, ShoppingCart } from "lucide-react";
 
+// Batch data
 const batches = {
   available: [
     {
@@ -19,7 +20,7 @@ const batches = {
       certification: "Organic"
     },
     {
-      id: "BT-002", 
+      id: "BT-002",
       crop: "Red Onions",
       farmer: "Priya Sharma",
       location: "Guntur, AP",
@@ -32,7 +33,7 @@ const batches = {
     {
       id: "BT-003",
       crop: "Cotton",
-      farmer: "Mohan Singh", 
+      farmer: "Mohan Singh",
       location: "Warangal, TS",
       quantity: "200 kg",
       price: "₹85/kg",
@@ -67,16 +68,19 @@ const batches = {
   ]
 };
 
+// Status badge helper
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "Available":
-      return <Badge className="bg-available hover:bg-available/90 text-available-foreground">Available</Badge>;
+      return <Badge className="bg-green-500 text-white px-3 py-1 rounded-full">Available</Badge>;
     case "In Transit":
-      return <Badge className="bg-pending hover:bg-pending/90 text-pending-foreground">In Transit</Badge>;
+      return <Badge className="bg-yellow-400 text-white px-3 py-1 rounded-full">In Transit</Badge>;
     case "Delivered":
-      return <Badge className="bg-owned hover:bg-owned/90 text-owned-foreground">Delivered</Badge>;
+      return <Badge className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Delivered</Badge>;
+    case "Verified":
+      return <Badge className="bg-green-100 text-green-600 px-3 py-1 rounded-full">Verified</Badge>;
     default:
-      return <Badge variant="secondary">{status}</Badge>;
+      return <Badge variant="outline" className="border border-gray-200">{status}</Badge>;
   }
 };
 
@@ -119,10 +123,11 @@ export const BatchTabs = () => {
           </TabsTrigger>
         </TabsList>
 
+        {/* Available Batches */}
         <TabsContent value="available" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {batches.available.map((batch) => (
-              <Card key={batch.id} className="hover:shadow-lg transition-shadow">
+              <Card key={batch.id} className="hover:shadow-lg transition-shadow border border-gray-200">
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start">
                     <div>
@@ -151,16 +156,15 @@ export const BatchTabs = () => {
                       <span className="text-sm">{batch.quantity}</span>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-3 w-3 text-muted-foreground" />
-                    <span>Harvested: {new Date(batch.harvestDate).toLocaleDateString()}</span>
-                  </div>
 
-                  <div className="flex justify-between items-center pt-4 border-t">
+                  {/* ⭐ Rating + 📍 Distance */}
+                  
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                     <div>
                       <div className="text-lg font-bold text-primary">{batch.price}</div>
-                      <Badge variant="outline" className="text-xs mt-1">{batch.certification}</Badge>
+                      <Badge variant="outline" className="text-xs mt-1 border border-gray-200">
+                        {batch.certification}
+                      </Badge>
                     </div>
                     <Button className="bg-primary hover:bg-primary/90">
                       Request Purchase
@@ -172,10 +176,11 @@ export const BatchTabs = () => {
           </div>
         </TabsContent>
 
+        {/* In Process Batches */}
         <TabsContent value="inProcess" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {batches.inProcess.map((batch) => (
-              <Card key={batch.id} className="hover:shadow-lg transition-shadow border-l-4 border-l-pending">
+              <Card key={batch.id} className="hover:shadow-lg transition-shadow border border-gray-200 border-l-4 border-l-yellow-300">
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start">
                     <div>
@@ -210,7 +215,7 @@ export const BatchTabs = () => {
                     <span>Expected: {new Date(batch.estimatedDelivery).toLocaleDateString()}</span>
                   </div>
 
-                  <div className="flex justify-between items-center pt-4 border-t">
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                     <div className="text-sm text-muted-foreground">
                       Track your order status
                     </div>
@@ -224,19 +229,26 @@ export const BatchTabs = () => {
           </div>
         </TabsContent>
 
+        {/* Owned Batches */}
         <TabsContent value="owned" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {batches.owned.map((batch) => (
-              <Card key={batch.id} className="hover:shadow-lg transition-shadow border-l-4 border-l-owned">
+              <Card
+                key={batch.id}
+                className="hover:shadow-lg transition-shadow border border-gray-200 border-l-4 border-l-blue-400"
+              >
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="text-lg">{batch.crop}</CardTitle>
-                      <p className="text-muted-foreground text-sm">Batch ID: {batch.id}</p>
+                      <p className="text-muted-foreground text-sm">
+                        Batch ID: {batch.id}
+                      </p>
                     </div>
                     {getStatusBadge(batch.status)}
                   </div>
                 </CardHeader>
+
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
@@ -256,19 +268,19 @@ export const BatchTabs = () => {
                       <span className="text-sm">{batch.quantity}</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-2 text-sm">
                     <Calendar className="h-3 w-3 text-muted-foreground" />
-                    <span>Purchased: {new Date(batch.purchaseDate).toLocaleDateString()}</span>
+                    <span>
+                      Purchased: {new Date(batch.purchaseDate).toLocaleDateString()}
+                    </span>
                   </div>
 
-                  <div className="flex justify-between items-center pt-4 border-t">
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                     <div className="text-sm text-muted-foreground">
                       Successfully delivered
                     </div>
-                    <Button variant="outline">
-                      View Receipt
-                    </Button>
+                    <Button variant="outline">View Receipt</Button>
                   </div>
                 </CardContent>
               </Card>

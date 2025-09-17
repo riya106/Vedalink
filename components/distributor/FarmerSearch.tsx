@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, MapPin, Filter } from "lucide-react";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
-import { Card, CardContent } from  "@/components/card";
+import { Card, CardContent } from "@/components/card";
 import { Badge } from "@/components/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
 
@@ -20,7 +20,7 @@ const farmers = [
   {
     id: 2,
     name: "Priya Sharma",
-    location: "Guntur, Andhra Pradesh", 
+    location: "Guntur, Andhra Pradesh",
     crops: ["Tomato", "Onion", "Chilli"],
     batches: 3,
     rating: 4.9,
@@ -44,11 +44,15 @@ export const FarmerSearch = () => {
   const [cropFilter, setCropFilter] = useState("");
 
   const filteredFarmers = farmers.filter(farmer => {
-    const matchesSearch = farmer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         farmer.location.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCrop = cropFilter === "all" || !cropFilter || farmer.crops.some(crop => 
-      crop.toLowerCase().includes(cropFilter.toLowerCase())
-    );
+    const matchesSearch =
+      farmer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      farmer.location.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCrop =
+      cropFilter === "all" ||
+      !cropFilter ||
+      farmer.crops.some(crop =>
+        crop.toLowerCase().includes(cropFilter.toLowerCase())
+      );
     return matchesSearch && matchesCrop;
   });
 
@@ -66,7 +70,7 @@ export const FarmerSearch = () => {
               className="pl-10"
             />
           </div>
-          
+
           <Select value={cropFilter} onValueChange={setCropFilter}>
             <SelectTrigger className="w-[180px]">
               <Filter className="h-4 w-4 mr-2" />
@@ -88,7 +92,10 @@ export const FarmerSearch = () => {
       {/* Farmer Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredFarmers.map((farmer) => (
-          <Card key={farmer.id} className="hover:shadow-md transition-all duration-200 cursor-pointer border border-border/50 hover:border-primary/30">
+          <Card
+            key={farmer.id}
+            className="hover:shadow-md transition-all duration-200 cursor-pointer border border-border/50 hover:border-primary/30"
+          >
             <CardContent className="p-4">
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
@@ -96,7 +103,7 @@ export const FarmerSearch = () => {
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-base">{farmer.name}</h3>
                       {farmer.verified && (
-                        <Badge className="bg-success/10 text-success text-xs px-2 py-0.5">
+                        <Badge className="bg-green-100 text-green-600 text-xs px-2 py-0.5">
                           Verified
                         </Badge>
                       )}
@@ -107,21 +114,33 @@ export const FarmerSearch = () => {
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0 ml-2">
-                    <div className="text-sm font-medium text-warning">★ {farmer.rating}</div>
+                    <div className="text-sm font-medium text-yellow-600 flex items-center gap-1">
+                      <span>★</span>
+                      <span>{farmer.rating}</span>
+                    </div>
                     <div className="text-xs text-muted-foreground">{farmer.distance}</div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-muted-foreground mb-2">Available Crops:</div>
+                  <div className="text-xs text-muted-foreground mb-2">
+                    Available Crops:
+                  </div>
                   <div className="flex flex-wrap gap-1">
                     {farmer.crops.slice(0, 3).map((crop) => (
-                      <Badge key={crop} variant="outline" className="text-xs px-2 py-0.5 border-primary/20 text-primary">
+                      <Badge
+                        key={crop}
+                        variant="outline"
+                        className="text-xs px-2 py-0.5 border-primary/20 text-primary"
+                      >
                         {crop}
                       </Badge>
                     ))}
                     {farmer.crops.length > 3 && (
-                      <Badge variant="outline" className="text-xs px-2 py-0.5 border-muted text-muted-foreground">
+                      <Badge
+                        variant="outline"
+                        className="text-xs px-2 py-0.5 border-muted text-muted-foreground"
+                      >
                         +{farmer.crops.length - 3} more
                       </Badge>
                     )}
@@ -144,7 +163,9 @@ export const FarmerSearch = () => {
 
       {filteredFarmers.length === 0 && (
         <div className="text-center py-12">
-          <div className="text-muted-foreground">No farmers found matching your criteria</div>
+          <div className="text-muted-foreground">
+            No farmers found matching your criteria
+          </div>
         </div>
       )}
     </div>
