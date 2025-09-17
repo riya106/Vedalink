@@ -1,6 +1,3 @@
-// This is our Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -11,25 +8,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model for Farmers
 model Farmer {
-  id        Int      @id @default(autoincrement())
-  clerkId   String   @unique
-  name      String
-  email     String   @unique
-  phone     String   @unique
-  farmName  String
-  location  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // relation to crops
-  crops Crop[]
+  id             Int      @id @default(autoincrement())
+  name           String
+  email          String   @unique
+  phone          String   @unique
+  farmName       String
+  location       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  clerkId        String   @unique
+  acreage        String   @default("")
+  batches        Int      @default(0)
+  bio            String   @default("")
+  certifications String[] @default([])
+  gallery        String[] @default([])
+  image          String   @default("")
+  lastHarvest    DateTime @default(now())
+  methods        String[] @default([])
+  rating         Float    @default(0.0)
+  region         String   @default("")
+  since          Int      @default(2000)
+  crops          Crop[]
 }
 
-// crop model
 model Crop {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String
   variety     String
   quantity    Float
@@ -37,20 +41,15 @@ model Crop {
   plantedAt   DateTime
   harvestedAt DateTime?
   farmerId    Int
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // relation to farmer
-  farmer    Farmer      @relation(fields: [farmerId], references: [id])
-  // relation to orders
-  orders    Order[]
-  Inventory Inventory[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  farmer      Farmer      @relation(fields: [farmerId], references: [id])
+  Inventory   Inventory[]
+  orders      Order[]
 }
 
-// model for distributors
 model Distributor {
   id        Int      @id @default(autoincrement())
-  clerkId   String   @unique
   name      String
   email     String   @unique
   phone     String   @unique
@@ -58,11 +57,10 @@ model Distributor {
   location  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  // relation to orders
+  clerkId   String   @unique
   orders    Order[]
 }
 
-// model for orders
 model Order {
   id            Int         @id @default(autoincrement())
   orderNumber   String      @unique
@@ -75,14 +73,11 @@ model Order {
   status        String      @default("PENDING")
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  // relation to crop
-  crop          Crop        @relation(fields: [cropId], references: [id])
-  // relation to distributor
-  distributor   Distributor @relation(fields: [distributorId], references: [id])
   Logistics     Logistics[]
+  crop          Crop        @relation(fields: [cropId], references: [id])
+  distributor   Distributor @relation(fields: [distributorId], references: [id])
 }
 
-// model for logistics
 model Logistics {
   id            Int       @id @default(autoincrement())
   orderId       Int
@@ -94,14 +89,11 @@ model Logistics {
   deliveryDate  DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  // relation to order
   order         Order     @relation(fields: [orderId], references: [id])
 }
 
-// mode for retailers
 model Retailer {
   id        Int         @id @default(autoincrement())
-  clerkId   String      @unique
   name      String
   email     String      @unique
   phone     String      @unique
@@ -109,10 +101,10 @@ model Retailer {
   location  String
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+  clerkId   String      @unique
   Inventory Inventory[]
 }
 
-// model for inventory
 model Inventory {
   id         Int      @id @default(autoincrement())
   cropId     Int
@@ -121,21 +113,17 @@ model Inventory {
   unit       String
   addedAt    DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  // relation to crop
   crop       Crop     @relation(fields: [cropId], references: [id])
-  // relation to retailer
   retailer   Retailer @relation(fields: [retailerId], references: [id])
 }
 
-// model for customers
 model Customer {
   id        Int      @id @default(autoincrement())
-  clerkId   String   @unique
   name      String
   email     String   @unique
   phone     String   @unique
   address   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  clerkId   String   @unique
 }
-
