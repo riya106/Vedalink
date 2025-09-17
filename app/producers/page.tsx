@@ -1,6 +1,16 @@
-'use client';
+"use client";
 
-import { MapPin, Award, Leaf, Phone, CalendarDays, Ruler, Star, QrCode, ShieldCheck } from "lucide-react";
+import {
+  MapPin,
+  Award,
+  Leaf,
+  Phone,
+  CalendarDays,
+  Ruler,
+  Star,
+  QrCode,
+  ShieldCheck,
+} from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 
@@ -30,11 +40,12 @@ const producers: Producer[] = [
     crops: ["Turmeric", "Tomato"],
     certifications: ["Organic (NPOP)", "Residue Test 2025-Q1"],
     phone: "+91 98200 12345",
-    image: "https://images.pexels.com/photos/20458068/pexels-photo-20458068.jpeg",
+    image:
+      "https://images.pexels.com/photos/20458068/pexels-photo-20458068.jpeg",
     gallery: [
       "https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg",
       "https://images.pexels.com/photos/2278543/pexels-photo-2278543.jpeg",
-      "https://images.pexels.com/photos/11573790/pexels-photo-11573790.jpeg"
+      "https://images.pexels.com/photos/11573790/pexels-photo-11573790.jpeg",
     ],
     acreage: "6.2 acres",
     methods: ["Natural farming", "Rainwater harvesting", "Drip irrigation"],
@@ -55,7 +66,7 @@ const producers: Producer[] = [
     gallery: [
       "https://images.pexels.com/photos/6713249/pexels-photo-6713249.jpeg",
       "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
-      "https://images.pexels.com/photos/268832/pexels-photo-268832.jpeg"
+      "https://images.pexels.com/photos/268832/pexels-photo-268832.jpeg",
     ],
     acreage: "18.5 acres",
     methods: ["Shade-grown", "Manual plucking", "Soil health tracking"],
@@ -76,7 +87,7 @@ const producers: Producer[] = [
     gallery: [
       "https://images.pexels.com/photos/3019836/pexels-photo-3019836.jpeg",
       "https://images.pexels.com/photos/1406880/pexels-photo-1406880.jpeg",
-      "https://images.pexels.com/photos/33816611/pexels-photo-33816611.jpeg"
+      "https://images.pexels.com/photos/33816611/pexels-photo-33816611.jpeg",
     ],
     acreage: "12.0 acres",
     methods: ["Integrated pest management", "Solar cold room", "Compost mulch"],
@@ -94,7 +105,9 @@ export default function Producers() {
     <section className="px-4 sm:px-8 lg:px-20 py-12 sm:py-16">
       <div className="max-w-7xl mx-auto w-full">
         <header className="max-w-3xl">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{t("producers.title")}</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            {t("producers.title")}
+          </h1>
           <p className="mt-2 text-muted-foreground">{t("producers.desc")}</p>
         </header>
 
@@ -115,7 +128,12 @@ function ProducerCard({ p }: { p: Producer }) {
 
   return (
     <article className="overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow">
-      <img src={main} alt={p.name} className="h-52 w-full object-cover" loading="lazy" />
+      <img
+        src={main}
+        alt={p.name}
+        className="h-52 w-full object-cover"
+        loading="lazy"
+      />
       <div className="p-5">
         <h2 className="text-lg font-semibold leading-tight">{p.name}</h2>
         <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
@@ -127,26 +145,60 @@ function ProducerCard({ p }: { p: Producer }) {
         {/* badges */}
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           {p.crops.map((c) => (
-            <span key={c} className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border">{c}</span>
+            <span
+              key={c}
+              className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border"
+            >
+              {c}
+            </span>
           ))}
           {p.certifications.map((c) => (
-            <span key={c} className="rounded-full bg-accent/10 px-2 py-0.5 text-accent-foreground ring-1 ring-border">{c}</span>
+            <span
+              key={c}
+              className="rounded-full bg-primary/10 px-2 py-0.5 text-primary ring-1 ring-border"
+            >
+              {c}
+            </span>
           ))}
         </div>
 
         {/* facts */}
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          <Fact icon={<Ruler className="h-4 w-4" />} label={t("producers.fact.acreage")} value={p.acreage} />
-          <Fact icon={<CalendarDays className="h-4 w-4" />} label={t("producers.fact.since")} value={String(p.since)} />
-          <Fact icon={<ShieldCheck className="h-4 w-4" />} label={t("producers.fact.batches")} value={String(p.batches)} />
-          <Fact icon={<CalendarDays className="h-4 w-4" />} label={t("producers.fact.last")} value={p.lastHarvest} />
+          <Fact
+            icon={<Ruler className="h-4 w-4" />}
+            label={t("producers.fact.acreage")}
+            value={p.acreage}
+          />
+          <Fact
+            icon={<CalendarDays className="h-4 w-4" />}
+            label={t("producers.fact.since")}
+            value={String(p.since)}
+          />
+          <Fact
+            icon={<ShieldCheck className="h-4 w-4" />}
+            label={t("producers.fact.batches")}
+            value={String(p.batches)}
+          />
+          <Fact
+            icon={<CalendarDays className="h-4 w-4" />}
+            label={t("producers.fact.last")}
+            value={p.lastHarvest}
+          />
         </div>
 
-        <div className="mt-2 flex items-center gap-1 text-amber-500" aria-label={`Rating ${p.rating} out of 5`}>
+        <div
+          className="mt-2 flex items-center gap-1 text-amber-500"
+          aria-label={`Rating ${p.rating} out of 5`}
+        >
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className={`h-4 w-4 ${i < stars ? "fill-current" : "opacity-30"}`} />
+            <Star
+              key={i}
+              className={`h-4 w-4 ${i < stars ? "fill-current" : "opacity-30"}`}
+            />
           ))}
-          <span className="ml-1 text-xs text-muted-foreground">{p.rating.toFixed(1)}</span>
+          <span className="ml-1 text-xs text-muted-foreground">
+            {p.rating.toFixed(1)}
+          </span>
         </div>
 
         {/* methods */}
@@ -158,15 +210,33 @@ function ProducerCard({ p }: { p: Producer }) {
 
         {/* contact + actions */}
         <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
-          <div className="inline-flex items-center gap-1 text-muted-foreground"><Phone className="h-4 w-4" />{p.phone}</div>
-          <button className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-xs font-medium hover:bg-muted/60"><QrCode className="h-4 w-4" />{t("producers.viewTrace")}</button>
+          <div className="inline-flex items-center gap-1 text-muted-foreground">
+            <Phone className="h-4 w-4" />
+            {p.phone}
+          </div>
+          <button className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-xs font-medium hover:bg-muted/60">
+            <QrCode className="h-4 w-4" />
+            {t("producers.viewTrace")}
+          </button>
         </div>
 
         {/* gallery */}
         <div className="mt-4 flex gap-2 overflow-x-auto">
           {[p.image, ...p.gallery].map((src, i) => (
-            <button key={i} onClick={() => setMain(src)} className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-border ${main===src?"outline outline-2 outline-primary":""}`} aria-label="Select image">
-              <img src={src} alt="gallery" className="h-full w-full object-cover" loading="lazy" />
+            <button
+              key={i}
+              onClick={() => setMain(src)}
+              className={`h-14 w-20 flex-shrink-0 overflow-hidden rounded-md ring-1 ring-border ${
+                main === src ? "outline-2 outline-primary" : ""
+              }`}
+              aria-label="Select image"
+            >
+              <img
+                src={src}
+                alt="gallery"
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </button>
           ))}
         </div>
@@ -175,7 +245,15 @@ function ProducerCard({ p }: { p: Producer }) {
   );
 }
 
-function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Fact({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
   return (
     <div className="rounded-lg border border-border bg-background/60 p-3">
       <div className="flex items-center gap-2 text-muted-foreground">
