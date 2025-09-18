@@ -106,7 +106,7 @@ export default function Producers() {
         </header>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {producers.map((p) => (
+          {producers.map((p : Producer) => (
             <ProducerCard key={p.id} p={p} />
           ))}
         </div>
